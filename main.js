@@ -51,7 +51,7 @@ angular.module("TicTacToe", ["firebase"])
 			$scope.obj.playerMove++
 			winCheck();
 			$scope.obj.$save();
-			console.log($scope.fbRoot.$child(IDs[0]))
+			// console.log($scope.fbRoot.$child(IDs[0])); // test to see what this returns
 		}
 	};
 	//win checker

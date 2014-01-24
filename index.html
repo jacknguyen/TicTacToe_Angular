@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html x-ng-app="TicTacToe">
-<head>
-	<title>Tic Tac Toe Angular</title>
-	<link rel="stylesheet" href="style.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
-	<script src="https://cdn.firebase.com/v0/firebase.js"></script>
-	<script src="https://cdn.firebase.com/libs/angularfire/0.6.0/angularfire.min.js"></script>
-	<script src="main.js"></script>
-</head>
-<body x-ng-controller="gameController">
-	<header class="title">Tic Tac Toe</header>
-	<p class="subtitle">hearts vs. gems</p>
-	<div x-ng-app="" ng-class="{board:true}">
-		<div ng-repeat="rows in obj.gameBoard track by $index">
-			<div ng-repeat="cols in rows track by $index" ng-class="{box:true, cf:$index%3==0}" ng-click="playerClick($parent.$index,$index)" ng-bind="cols">
+
+	<head>
+		<title>Tic Tac Toe Angular</title>
+		<link rel="stylesheet" href="style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
+		<script src="https://cdn.firebase.com/v0/firebase.js"></script>
+		<script src="https://cdn.firebase.com/libs/angularfire/0.6.0/angularfire.min.js"></script>
+		<script src="main.js"></script>
+	</head>
+
+	<body x-ng-controller="gameController">
+		<header class="title">Tic Tac Toe</header>
+		<p class="subtitle">hearts vs. gems</p>
+		<div x-ng-app="" ng-class="{board:true}">
+			<div ng-repeat="rows in obj.gameBoard track by $index">
+				<div ng-repeat="cols in rows track by $index" ng-class="{box:true, cf:$index%3==0}" ng-click="playerClick($parent.$index,$index)" ng-bind="cols">
+				</div>
+			</div>
+			<div>
+				<span>Player 1: {{obj.player1}}</span><span>Player 2: {{obj.player2}}</span>
+				<p ng-click="gameReset()">Reset</p>
 			</div>
 		</div>
-		<div>
-			<span>Player 1: {{obj.player1}}</span><span>Player 2: {{obj.player2}}</span>
-			<p ng-click="gameReset()">Reset</p>
-		</div>
-	</div>
+	</body>
 
-</body>
 </html>

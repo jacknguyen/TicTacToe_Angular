@@ -18,7 +18,8 @@ angular.module("TicTacToe", ["firebase"])
  	 			playerTurn:false,
  	 			player1:"",
  	 			player2:"",
- 	 			playerMove:0 } );
+ 	 			playerMove:0,
+ 	 			win: false } );
 			//listens for a change to the firebase then run everything inside
 			$scope.fbRoot.$on("change", function() {
 				IDs = $scope.fbRoot.$getIndex();
@@ -36,11 +37,11 @@ angular.module("TicTacToe", ["firebase"])
 	// $scope.obj.player1 = '';
 	// $scope.obj.player2 = '';
 	// var playerTurn = {val:false};
-	var playerMove = 0;
-	var win = false;
+	// var playerMove = 0;
+	// var win = false;
 	//player click function
 	$scope.playerClick = function(row,col) {
-		if(win == false){
+		if($scope.obj.win == false){
 			if ($scope.obj.gameBoard[row][col] == ""){
 				if($scope.obj.playerTurn =!$scope.obj.playerTurn) {
 					$scope.obj.gameBoard[row][col] = "X";
@@ -82,13 +83,11 @@ angular.module("TicTacToe", ["firebase"])
 			}
 		}
 		if ((row||col||dia)=="X"){
-			// console.log("X wins!");
 			$scope.obj.player1++;
-			win=true;
+			$scope.obj.win=true;
 		}else if((row||col||dia)=="O"){
-			// console.log("O wins!");
 			$scope.obj.player2++;
-			win=true;
+			$scope.obj.win=true;
 		}
 	};
 	//checks if values are the same
@@ -99,14 +98,14 @@ angular.module("TicTacToe", ["firebase"])
 	$scope.nextGame = function (){
 		$scope.obj.gameBoard = [['', '', ''],['', '', ''],['', '', '']];
 		$scope.obj.playerMove = 0;
-		win = false;
+		$scope.obj.win = false;
 		$scope.obj.playerTurn = false;
 		$scope.obj.$save();
 	};
 	$scope.newGame = function (){
 		$scope.obj.gameBoard = [['', '', ''],['', '', ''],['', '', '']];
 		$scope.obj.playerMove = 0;
-		win = false;
+		$scope.obj.win = false;
 		$scope.obj.playerTurn = false;
 		$scope.obj.player1 = "";
 		$scope.obj.player2 = "";

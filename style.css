@@ -9,6 +9,9 @@ body {
 header, p {
 	text-align: center;
 }
+header {
+	font-size: 35px;
+}
 .board {
 	margin: 0 auto;
 	width: 234px;

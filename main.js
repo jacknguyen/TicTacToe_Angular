@@ -95,16 +95,23 @@ angular.module("TicTacToe", ["firebase"])
 	function same(val1,val2,val3){
 		return (val1==val2&&val2==val3) ? val1 : '';
 	};
-	//resets game
-	$scope.gameReset = function (){
-		$scope.fbRoot.$child(IDs[0]).$set( {
-			gameBoard:[['', '', ''],['', '', ''],['', '', '']],
-			playerMove: 0
-		});
-
-		// $scope.obj.gameBoard = [['', '', ''],['', '', ''],['', '', '']];
-		// playerMove = 0;
+	//function to reset or play a new game
+	$scope.nextGame = function (){
+		$scope.obj.gameBoard = [['', '', ''],['', '', ''],['', '', '']];
+		$scope.obj.playerMove = 0;
 		win = false;
 		$scope.obj.playerTurn = false;
+		$scope.obj.$save();
 	};
+	$scope.newGame = function (){
+		$scope.obj.gameBoard = [['', '', ''],['', '', ''],['', '', '']];
+		$scope.obj.playerMove = 0;
+		win = false;
+		$scope.obj.playerTurn = false;
+		$scope.obj.player1 = "";
+		$scope.obj.player2 = "";
+		$scope.obj.$save();
+	};
+
+
 });

@@ -12,15 +12,16 @@
 
 	<body x-ng-controller="gameController">
 		<header class="title">Tic Tac Toe</header>
-		<p class="subtitle">hearts vs. gems</p>
+		<p class="subtitle">Hearts vs. Gems</p>
 		<div x-ng-app="" ng-class="{board:true}">
 			<div ng-repeat="rows in obj.gameBoard track by $index">
 				<div ng-repeat="cols in rows track by $index" ng-class="{box:true, cf:$index%3==0}" ng-click="playerClick($parent.$index,$index)" ng-bind="cols">
 				</div>
 			</div>
 			<div>
-				<span>Player 1: {{obj.player1}}</span><span>Player 2: {{obj.player2}}</span>
-				<p ng-click="gameReset()">Reset</p>
+				<p>Player 1: {{obj.player1}}</p><p>Player 2: {{obj.player2}}</p>
+				<p ng-click="nextGame()">Next Game</p>
+				<p ng-click="newGame()">New Game</p>
 			</div>
 		</div>
 	</body>

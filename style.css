@@ -6,7 +6,7 @@ body {
 	background-color: rgba(103,146,63,1);
 	font-family: "zeldadx";
 }
-h1 {
+header, p {
 	text-align: center;
 }
 .board {

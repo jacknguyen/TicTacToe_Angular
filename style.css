@@ -6,29 +6,59 @@ body {
 	background-color: rgba(103,146,63,1);
 	font-family: "zeldadx";
 }
-header, p {
+.title, .subtitle {
 	text-align: center;
 }
-header {
-	font-size: 35px;
+.title {
+	font-size: 40px;
+}
+.subtitle {
+	margin: 10px 0;
+	font-size: 24px;
+}
+.boardimage {
+	margin: 0 auto;
+	width: 612px;
+	height: 494px;
+	background: url("img/gameboard.png") no-repeat;
+	background-size: fixed;
 }
 .board {
-	margin: 0 auto;
-	width: 234px;
+	position: relative;
+	top: 130px;
+	left: 190px;
 }
-
 .box {
-	width: 70px;
-	height: 70px;
-	border: 2px dotted black;
-	margin: 2px;
+	width: 64px;
+	height: 64px;
+	margin: 5px;
 	float: left;
-
+}
+.boxInit {
+	background: url("img/grass.png")
 }
 .box:hover {
-	background-color: lightgreen;
+	background: url("img/link.png") no-repeat;
 }
-
 .cf {
    clear: both;
+}
+.score{
+	margin: 0;
+}
+.bottom {
+	background: rgba(241,220,171,1);
+	text-align: center;
+	width: 612px;
+	height: 100px;
+	margin: 0 auto;
+}
+#p1 {
+	margin-right: 30px;
+}
+.p1Click {
+	background: url("img/grass-empty-gem.png") no-repeat;
+}
+.p2Click {
+	background: url("img/grass-empty-heart.png") no-repeat;
 }

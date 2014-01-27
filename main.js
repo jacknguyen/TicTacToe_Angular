@@ -2,17 +2,14 @@ var ref;
 var IDs;
 angular.module("TicTacToe", ["firebase"])
 .controller("gameController", function ($scope,$firebase){
-
 	ref = new Firebase("https://heartsvsgems.firebaseio.com/");//initializing firebase through a reference
 	$scope.fbRoot = $firebase(ref); //binds the data stored on firebase to fbRoot
-
 	//Lorin's code. Wait until everything is loaded then run inside
 	$scope.fbRoot.$on("loaded", function() {
 		IDs = $scope.fbRoot.$getIndex(); //setting a local var 'IDs' to the firebase
-		
 		if(IDs.length == 0) //if there is nothing on the firebase run the code below
 		{
-			//adds the gameBoard and playerTurn to firebase
+			//initalizes variables to firebase
 	 		$scope.fbRoot.$add( { 
 	 			gameBoard:[['', '', ''],['', '', ''],['', '', '']],
  	 			playerTurn:false,
@@ -31,14 +28,6 @@ angular.module("TicTacToe", ["firebase"])
 			$scope.obj = $scope.fbRoot.$child(IDs[0]);
 		}
 	});
-
-	//OLD CODE
-	// $scope.gameBoard = [['', '', ''],['', '', ''],['', '', '']];
-	// $scope.obj.player1 = '';
-	// $scope.obj.player2 = '';
-	// var playerTurn = {val:false};
-	// var playerMove = 0;
-	// var win = false;
 	//player click function
 	$scope.playerClick = function(row,col) {
 		if($scope.obj.win == false){
@@ -94,7 +83,7 @@ angular.module("TicTacToe", ["firebase"])
 	function same(val1,val2,val3){
 		return (val1==val2&&val2==val3) ? val1 : '';
 	};
-	//function to reset or play a new game
+	//next game. Resets board and player turn.
 	$scope.nextGame = function (){
 		$scope.obj.gameBoard = [['', '', ''],['', '', ''],['', '', '']];
 		$scope.obj.playerMove = 0;
@@ -102,6 +91,7 @@ angular.module("TicTacToe", ["firebase"])
 		$scope.obj.playerTurn = false;
 		$scope.obj.$save();
 	};
+	//New game. resets board and player scores.
 	$scope.newGame = function (){
 		$scope.obj.gameBoard = [['', '', ''],['', '', ''],['', '', '']];
 		$scope.obj.playerMove = 0;
@@ -111,6 +101,4 @@ angular.module("TicTacToe", ["firebase"])
 		$scope.obj.player2 = "";
 		$scope.obj.$save();
 	};
-
-
 });
